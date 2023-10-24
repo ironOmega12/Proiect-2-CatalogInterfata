@@ -110,9 +110,17 @@ public class CatalogMasini {
 
                 butonPanou1.addActionListener(new ActionListener() {   // Metoda prin care adaugam o masina noua, luam informatiile din casutele de text si le adaugam in array
                     public void actionPerformed(ActionEvent e) {
-                        masina.add(new Masini(txtInput1.getText(), txtInput2.getText(), txtInput3.getText(), Integer.parseInt(txtInput4.getText())));
-                        outputArea.setText("Succes");
-                        outputArea.setForeground(Color.green);
+                        int km = Integer.parseInt(txtInput4.getText());
+                        if (km < 0) {
+                            outputArea.setText("KM nu pot fi negativi!");
+                            outputArea.setForeground(Color.red);
+                            return;
+                        } else {
+                            masina.add(new Masini(txtInput1.getText(), txtInput2.getText(), txtInput3.getText(),
+                                    km));
+                            outputArea.setText("Succes");
+                            outputArea.setForeground(Color.green);
+                        }
                     }
                 });
             }
