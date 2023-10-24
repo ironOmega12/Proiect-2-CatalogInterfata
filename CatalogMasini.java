@@ -32,6 +32,8 @@ public class CatalogMasini {
         frame.setSize(500, 430);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        StringBuffer mesajBuffer = new StringBuffer();
+
         panouContent = new Container();
         panouContent = frame.getContentPane();
         panouContent.setLayout(new BoxLayout(panouContent, BoxLayout.Y_AXIS));
@@ -108,17 +110,20 @@ public class CatalogMasini {
                 panou1.add(butonPanou1);
                 panou1.revalidate();
 
-                butonPanou1.addActionListener(new ActionListener() {   // Metoda prin care adaugam o masina noua, luam informatiile din casutele de text si le adaugam in array
+                butonPanou1.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        int km = Integer.parseInt(txtInput4.getText());
+                        int km = Integer.parseInt(txtInput4.getText());    // Metoda prin care adaugam o masina noua, luam informatiile din casutele de text si le adaugam in array
                         if (km < 0) {
-                            outputArea.setText("KM nu pot fi negativi!");
+                            mesajBuffer.setLength(0);  // Resetam mesajul din buffer
+                            mesajBuffer.append("KM nu pot fi negativi!");
+                            outputArea.setText(mesajBuffer.toString());
                             outputArea.setForeground(Color.red);
                             return;
                         } else {
-                            masina.add(new Masini(txtInput1.getText(), txtInput2.getText(), txtInput3.getText(),
-                                    km));
-                            outputArea.setText("Succes");
+                            masina.add(new Masini(txtInput1.getText(), txtInput2.getText(), txtInput3.getText(), km));
+                            mesajBuffer.setLength(0);  
+                            mesajBuffer.append("Succes");
+                            outputArea.setText(mesajBuffer.toString());
                             outputArea.setForeground(Color.green);
                         }
                     }
